@@ -57,18 +57,19 @@ export default function Contact() {
       <div style={{ position: 'relative', zIndex: 10, maxWidth: 1400, margin: '0 auto' }}>
 
         {/* Header */}
-        <div className="flex items-center gap-4 mb-12">
-          <div className="w-8 h-px bg-[#0A0A0A]" />
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#888]">Contacto</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3.5rem' }}>
+          <div style={{ width: 32, height: 1, backgroundColor: '#0A0A0A' }} />
+          <span style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#888' }}>Contacto</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(3rem, 6vw, 6rem)' }}>
 
-          {/* Lado izquierdo — texto */}
+          {/* Lado izquierdo */}
           <div>
             <h2
               ref={titleRef}
-              className="fade-up text-[clamp(2.5rem,5vw,4.5rem)] font-black text-[#0A0A0A] leading-none tracking-tight mb-10"
+              className="fade-up"
+              style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 900, color: '#0A0A0A', lineHeight: 1, letterSpacing: '-0.03em', marginBottom: '1.5rem' }}
             >
               Hagamos<br />
               <span style={{ WebkitTextStroke: '2px #0A0A0A', color: 'transparent' }}>
@@ -76,26 +77,23 @@ export default function Contact() {
               </span>
             </h2>
 
-            <p className="text-[#666] text-base leading-relaxed mb-12">
-              ¿Tenés un proyecto en mente? Contame de qué se trata y te respondo
-              en menos de 24 horas.
+            <p style={{ color: '#666', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '2.5rem' }}>
+              ¿Tenés un proyecto en mente? Contame de qué se trata y te respondo en menos de 24 horas.
             </p>
 
             {/* Datos de contacto */}
-            <div className="space-y-6">
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
               {[
-                { label: 'Email', value: 'hola@juli.photo', href: 'mailto:hola@juli.photo' },
-                { label: 'Instagram', value: '@juli.foto', href: '#' },
-                { label: 'WhatsApp', value: '+54 9 11 0000-0000', href: '#' },
+                { label: 'Email',     value: 'hola@juli.photo',    href: 'mailto:hola@juli.photo' },
+                { label: 'Instagram', value: '@juli.foto',          href: '#' },
+                { label: 'WhatsApp',  value: '+54 9 11 0000-0000', href: '#' },
               ].map((item) => (
-                <div key={item.label} className="flex items-center justify-between border-b border-[rgba(0,0,0,0.08)] pb-4">
-                  <span className="text-[10px] tracking-[0.2em] uppercase text-[#888]">{item.label}</span>
-                  <a
-                    href={item.href}
-                    className="text-sm font-medium text-[#0A0A0A] hover:opacity-50 transition-opacity duration-300"
-                  >
-                    {item.value}
-                  </a>
+                <div key={item.label} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(0,0,0,0.08)', padding: '1rem 0' }}>
+                  <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#aaa' }}>{item.label}</span>
+                  <a href={item.href} style={{ fontSize: '0.85rem', fontWeight: 500, color: '#0A0A0A', textDecoration: 'none', transition: 'opacity 0.3s' }}
+                    onMouseEnter={e => e.currentTarget.style.opacity = '0.4'}
+                    onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                  >{item.value}</a>
                 </div>
               ))}
             </div>
