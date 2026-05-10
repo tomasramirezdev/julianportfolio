@@ -78,7 +78,7 @@ export default function About() {
             >
               {[
                 { number: '2018', label: 'Desde' },
-                { number: '5+',   label: 'Países' },
+                { number: '+15',  label: 'Países' },
                 { number: '∞',    label: 'Historias' },
               ].map((stat) => (
                 <div key={stat.label}>

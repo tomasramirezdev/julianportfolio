@@ -107,7 +107,7 @@ export default function Hero() {
           <p style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0A0A0A' }}>Ilha Grande · RJ</p>
         </div>
         <div style={{ display: 'flex', gap: '2rem' }}>
-          {[{ n: '2018', l: 'Desde' }, { n: '5+', l: 'Países' }].map(s => (
+          {[{ n: '2018', l: 'Desde' }, { n: '+15', l: 'Países' }].map(s => (
             <div key={s.l} style={{ textAlign: 'right' }}>
               <p style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0A0A0A', lineHeight: 1 }}>{s.n}</p>
               <p style={{ fontSize: '0.5rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#aaa' }}>{s.l}</p>
@@ -181,7 +181,7 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 0.7 }}
         style={{ position: 'absolute', bottom: PAD, right: PAD, zIndex: 20, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '1.2rem' }}
       >
-        {[{ n: '2018', l: 'Desde' }, { n: '5+', l: 'Países' }].map(s => (
+        {[{ n: '2018', l: 'Desde' }, { n: '+15', l: 'Países' }].map(s => (
           <div key={s.l} style={{ textAlign: 'right' }}>
             <p style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 900, color: '#0A0A0A', lineHeight: 1, textShadow: '0 1px 8px rgba(244,244,239,0.8)' }}>{s.n}</p>
             <p style={{ fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#0A0A0A', marginTop: '0.2rem', opacity: 0.55 }}>{s.l}</p>
