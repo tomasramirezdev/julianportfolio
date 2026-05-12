@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import WavyBackground from './WavyBackground'
+import { useLang } from '@/lib/LanguageContext'
 
 // WebGL importado solo en cliente
 const LensReveal = dynamic(() => import('./LensReveal'), { ssr: false })
@@ -17,6 +18,7 @@ export default function Hero() {
   const passRef       = useRef(0)
   const [isHovering, setIsHovering] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const { tr } = useLang()
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768)
@@ -76,7 +78,7 @@ export default function Hero() {
           JULIÁN
         </p>
         <p style={{ fontSize: '0.7rem', fontWeight: 300, letterSpacing: '0.4em', textTransform: 'uppercase', color: '#777', marginTop: '0.6rem' }}>
-          Fotógrafo
+          {tr.hero.tagline}
         </p>
       </motion.div>
 
@@ -103,11 +105,11 @@ export default function Hero() {
         style={{ position: 'relative', zIndex: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', padding: '1.5rem', borderTop: '1px solid rgba(0,0,0,0.06)' }}
       >
         <div>
-          <p style={{ fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#aaa', marginBottom: '0.3rem' }}>Now in</p>
-          <p style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0A0A0A' }}>Ilha Grande · RJ</p>
+          <p style={{ fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#aaa', marginBottom: '0.3rem' }}>{tr.hero.nowIn}</p>
+          <p style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0A0A0A' }}>{tr.hero.location}</p>
         </div>
         <div style={{ display: 'flex', gap: '2rem' }}>
-          {[{ n: '2018', l: 'Desde' }, { n: '+15', l: 'Países' }].map(s => (
+          {[{ n: '2018', l: tr.hero.since }, { n: '+15', l: tr.hero.countries }].map(s => (
             <div key={s.l} style={{ textAlign: 'right' }}>
               <p style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0A0A0A', lineHeight: 1 }}>{s.n}</p>
               <p style={{ fontSize: '0.5rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#aaa' }}>{s.l}</p>
@@ -157,7 +159,7 @@ export default function Hero() {
           JULIÁN
         </p>
         <p style={{ fontSize: 'clamp(0.6rem, 1.2vw, 0.85rem)', fontWeight: 300, letterSpacing: '0.4em', textTransform: 'uppercase', color: '#777', marginTop: '0.6rem' }}>
-          Fotógrafo
+          {tr.hero.tagline}
         </p>
       </motion.div>
 
@@ -167,12 +169,12 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 0.6 }}
         style={{ position: 'absolute', bottom: PAD, left: PAD, zIndex: 20, border: '1px solid rgba(10,10,10,0.18)', padding: '1rem 1.2rem', backgroundColor: 'rgba(244,244,239,0.88)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', minWidth: 130 }}
       >
-        <p style={{ fontSize: '0.5rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#888', marginBottom: '0.5rem' }}>Now in</p>
+        <p style={{ fontSize: '0.5rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#888', marginBottom: '0.5rem' }}>{tr.hero.nowIn}</p>
         <div style={{ width: 40, height: 1, backgroundColor: '#ccc', marginBottom: '0.6rem' }} />
         <p style={{ fontSize: '0.72rem', fontWeight: 700, color: '#0A0A0A', letterSpacing: '0.04em' }}>ILHA GRANDE</p>
         <p style={{ fontSize: '0.6rem', color: '#777', marginTop: '0.25rem' }}>RJ · Brasil</p>
         <div style={{ width: 40, height: 1, backgroundColor: '#ccc', margin: '0.6rem 0' }} />
-        <p style={{ fontSize: '0.5rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#999', lineHeight: 1.6 }}>Capturando momentos</p>
+        <p style={{ fontSize: '0.5rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#999', lineHeight: 1.6 }}>{tr.hero.capturing}</p>
       </motion.div>
 
       {/* Stats — bottom right */}
@@ -181,7 +183,7 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 0.7 }}
         style={{ position: 'absolute', bottom: PAD, right: PAD, zIndex: 20, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '1.2rem' }}
       >
-        {[{ n: '2018', l: 'Desde' }, { n: '+15', l: 'Países' }].map(s => (
+        {[{ n: '2018', l: tr.hero.since }, { n: '+15', l: tr.hero.countries }].map(s => (
           <div key={s.l} style={{ textAlign: 'right' }}>
             <p style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 900, color: '#0A0A0A', lineHeight: 1, textShadow: '0 1px 8px rgba(244,244,239,0.8)' }}>{s.n}</p>
             <p style={{ fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#0A0A0A', marginTop: '0.2rem', opacity: 0.55 }}>{s.l}</p>
