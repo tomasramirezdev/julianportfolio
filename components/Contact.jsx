@@ -86,6 +86,7 @@ export default function Contact() {
               {[
                 { label: 'Email',       value: 'ramirezjuliane@gmail.com', href: 'mailto:ramirezjuliane@gmail.com' },
                 { label: 'Instagram',   value: '@moustachedmeatbag',       href: 'https://www.instagram.com/moustachedmeatbag/' },
+                { label: 'WhatsApp',    value: '+55 24 99965-1299',        href: 'https://wa.me/5524999651299' },
                 { label: 'Adobe Stock', value: 'Julian en Adobe Stock',    href: 'https://stock.adobe.com/es/contributor/211328140/julian?load_type=author&prev_url=detail' },
               ].map((item) => (
                 <div key={item.label} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(0,0,0,0.08)', padding: '1rem 0' }}>

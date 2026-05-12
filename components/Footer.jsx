@@ -18,6 +18,7 @@ export default function Footer() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
           {[
             { label: 'Instagram',   href: 'https://www.instagram.com/moustachedmeatbag/' },
+            { label: 'WhatsApp',    href: 'https://wa.me/5524999651299' },
             { label: 'Adobe Stock', href: 'https://stock.adobe.com/es/contributor/211328140/julian?load_type=author&prev_url=detail' },
             { label: 'Email',       href: 'mailto:ramirezjuliane@gmail.com' },
           ].map((link) => (
