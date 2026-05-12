@@ -15,14 +15,22 @@ export default function Footer() {
         <p className="text-[10px] tracking-[0.2em] uppercase text-[#444]">
           © {year} Juli · Fotografía
         </p>
-        <div className="flex items-center gap-8">
-          {['Instagram', 'Behance', 'LinkedIn'].map((link) => (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+          {[
+            { label: 'Instagram',   href: 'https://www.instagram.com/moustachedmeatbag/' },
+            { label: 'Adobe Stock', href: 'https://stock.adobe.com/es/contributor/211328140/julian?load_type=author&prev_url=detail' },
+            { label: 'Email',       href: 'mailto:ramirezjuliane@gmail.com' },
+          ].map((link) => (
             <a
-              key={link}
-              href="#"
-              className="text-[10px] tracking-[0.15em] uppercase text-[#444] hover:text-[#F4F4EF] transition-colors duration-300"
+              key={link.label}
+              href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel="noopener noreferrer"
+              style={{ fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#444', textDecoration: 'none', transition: 'color 0.3s' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#F4F4EF'}
+              onMouseLeave={e => e.currentTarget.style.color = '#444'}
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </div>
