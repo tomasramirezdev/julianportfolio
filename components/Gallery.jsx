@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
 import { useScrollReveal } from './useScrollReveal'
 
 const INITIAL_COUNT = 9
@@ -9,8 +10,8 @@ const photos = [
   { id: 1,  src: '/images/Retrato1.jpg',  alt: 'La mirada que no miente',    category: 'Retrato',  number: '01', size: 'tall'   },
   { id: 2,  src: '/images/Retrato2.jpg',  alt: 'Sombra propia',              category: 'Retrato',  number: '02', size: 'tall'   },
   { id: 3,  src: '/images/Pareja1.jpg',   alt: 'El instante entre dos',      category: 'Parejas',  number: '03', size: 'tall'   },
-  { id: 4,  src: '/images/Pareja2.jpg',   alt: 'Cerca del silencio',         category: 'Parejas',  number: '04', size: 'tall'   },
-  { id: 5,  src: '/images/Pareja3.jpg',   alt: 'Lo que no se dice',          category: 'Parejas',  number: '05', size: 'tall'   },
+  { id: 4,  src: '/images/Pareja2.jpg',   alt: 'No hay edad para querer',    category: 'Parejas',  number: '04', size: 'tall'   },
+  { id: 5,  src: '/images/Pareja3.jpg',   alt: 'El amor no avisa',           category: 'Parejas',  number: '05', size: 'tall'   },
   { id: 6,  src: '/images/Pareja4.jpg',   alt: 'Tiempo detenido',            category: 'Parejas',  number: '06', size: 'tall'   },
   { id: 7,  src: '/images/Evento.jpg',    alt: 'Cuando la noche empieza',    category: 'Eventos',  number: '07', size: 'wide'   },
   { id: 8,  src: '/images/Evento2.jpg',   alt: 'El brindis eterno',          category: 'Eventos',  number: '08', size: 'wide'   },
@@ -41,12 +42,16 @@ function Lightbox({ photo, onClose, onPrev, onNext }) {
 
   return (
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 1000, backgroundColor: 'rgba(0,0,0,0.93)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <img
-        src={photo.src}
-        alt={photo.alt}
-        onClick={e => e.stopPropagation()}
-        style={{ maxHeight: '88vh', maxWidth: '88vw', objectFit: 'contain', display: 'block', userSelect: 'none' }}
-      />
+      <div onClick={e => e.stopPropagation()} style={{ position: 'relative', maxHeight: '88vh', maxWidth: '88vw', width: '80vw', height: '88vh' }}>
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          fill
+          sizes="88vw"
+          style={{ objectFit: 'contain' }}
+          priority
+        />
+      </div>
       <p style={{
         position: 'absolute', bottom: '1.5rem', left: '50%', transform: 'translateX(-50%)',
         color: 'rgba(255,255,255,0.35)', fontSize: '0.55rem',
@@ -138,12 +143,14 @@ export default function Gallery() {
                 className="group"
               >
                 <div style={{ position: 'relative', aspectRatio: aspect, overflow: 'hidden' }}>
-                  <img
+                  <Image
                     src={photo.src}
                     alt={photo.alt}
-                    loading="lazy"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.7s ease' }}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{ objectFit: 'cover', transition: 'transform 0.7s ease' }}
                     className="group-hover:scale-105"
+                    priority={i < 3}
                   />
                   {/* Overlay hover */}
                   <div style={{
