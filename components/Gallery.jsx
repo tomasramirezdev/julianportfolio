@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { useScrollReveal } from './useScrollReveal'
+import { useLang } from '@/lib/LanguageContext'
 
 const INITIAL_COUNT = 9
 
@@ -15,7 +16,7 @@ const photos = [
   { id: 6,  src: '/images/Pareja4.jpg',   alt: 'Tiempo detenido',            category: 'Parejas',  number: '06', size: 'tall'   },
   { id: 7,  src: '/images/Evento.jpg',    alt: 'Cuando la noche empieza',    category: 'Eventos',  number: '07', size: 'wide'   },
   { id: 8,  src: '/images/Evento2.jpg',   alt: 'El brindis eterno',          category: 'Eventos',  number: '08', size: 'wide'   },
-  { id: 9,  src: '/images/Evento3.jpg',   alt: 'Entre risas y luces',        category: 'Eventos',  number: '09', size: 'wide'   },
+  { id: 9,  src: '/images/Evento3.jpg',   alt: 'Desde pequeño',        category: 'Eventos',  number: '09', size: 'wide'   },
   { id: 10, src: '/images/Evento4.jpg',   alt: 'Euforia colectiva',          category: 'Eventos',  number: '10', size: 'wide'   },
   { id: 11, src: '/images/Evento5.jpg',   alt: 'El último baile',            category: 'Eventos',  number: '11', size: 'wide'   },
   { id: 12, src: '/images/Grupo1.jpg',    alt: 'Los que siempre están',      category: 'Grupos',   number: '12', size: 'wide'   },
@@ -25,7 +26,6 @@ const photos = [
   { id: 16, src: '/images/Marca2.jpg',    alt: 'Presencia',                  category: 'Marca',    number: '16', size: 'square' },
 ]
 
-const categories = ['Todos', 'Retrato', 'Parejas', 'Eventos', 'Grupos', 'Marca']
 
 /* ── Lightbox ── */
 function Lightbox({ photo, onClose, onPrev, onNext }) {
@@ -79,10 +79,14 @@ function Lightbox({ photo, onClose, onPrev, onNext }) {
 
 /* ── Gallery ── */
 export default function Gallery() {
+  const { tr } = useLang()
   const [activeCategory, setActiveCategory] = useState('Todos')
   const [lightboxIndex, setLightboxIndex] = useState(null)
   const [showAll, setShowAll] = useState(false)
   const titleRef = useScrollReveal()
+
+  const categoriesTranslated = ['Todos', 'Retrato', 'Parejas', 'Eventos', 'Grupos', 'Marca']
+  const categoryLabel = (cat) => cat === 'Todos' ? tr.gallery.all : (tr.gallery.categories[cat] || cat)
 
   const allFiltered = activeCategory === 'Todos' ? photos : photos.filter(p => p.category === activeCategory)
   // Mostrar solo las primeras INITIAL_COUNT si es "Todos" y no se pidió ver todo
@@ -102,14 +106,14 @@ export default function Gallery() {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
               <div style={{ width: 32, height: 1, backgroundColor: '#0A0A0A' }} />
-              <span style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#888' }}>Trabajo</span>
+              <span style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#888' }}>{tr.gallery.label}</span>
             </div>
             <h2 ref={titleRef} className="fade-up" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, color: '#0A0A0A', lineHeight: 1, letterSpacing: '-0.03em' }}>
-              Proyectos<br />seleccionados
+              {tr.gallery.title1}<br />{tr.gallery.title2}
             </h2>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', paddingBottom: '0.25rem' }}>
-            {categories.map(cat => (
+            {categoriesTranslated.map(cat => (
               <button key={cat} onClick={() => { setActiveCategory(cat); setShowAll(cat !== 'Todos') }} style={{
                 fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase',
                 padding: '0.45rem 1.1rem', borderRadius: 999,
@@ -118,7 +122,7 @@ export default function Gallery() {
                 color: activeCategory === cat ? '#F4F4EF' : '#888',
                 cursor: 'pointer', transition: 'all 0.25s ease',
                 whiteSpace: 'nowrap', fontFamily: 'inherit', lineHeight: 1,
-              }}>{cat}</button>
+              }}>{categoryLabel(cat)}</button>
             ))}
           </div>
         </div>
@@ -193,7 +197,7 @@ export default function Gallery() {
               onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#0A0A0A'; e.currentTarget.style.color = '#F4F4EF' }}
               onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#0A0A0A' }}
             >
-              Ver todo el trabajo
+              {tr.gallery.seeAll}
             </button>
           </div>
         )}

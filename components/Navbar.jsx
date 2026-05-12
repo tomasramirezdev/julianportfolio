@@ -2,12 +2,19 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLang } from '@/lib/LanguageContext'
 
-const menuLinks = [
+const menuLinksEs = [
   { label: 'Inicio', href: '#hero' },
   { label: 'Sobre mí', href: '#about' },
   { label: 'Trabajo', href: '#gallery' },
   { label: 'Contacto', href: '#contact' },
+]
+const menuLinksEn = [
+  { label: 'Home', href: '#hero' },
+  { label: 'About', href: '#about' },
+  { label: 'Work', href: '#gallery' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 const NAV_PADDING = 'clamp(1.5rem, 5vw, 5rem)'
@@ -15,6 +22,8 @@ const NAV_PADDING = 'clamp(1.5rem, 5vw, 5rem)'
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { lang, toggle, tr } = useLang()
+  const menuLinks = lang === 'es' ? menuLinksEs : menuLinksEn
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40)
@@ -65,6 +74,29 @@ export default function Navbar() {
 
         {/* Botones derecha */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+
+          {/* Toggle idioma */}
+          <button
+            onClick={toggle}
+            style={{
+              fontSize: '0.65rem',
+              fontWeight: 600,
+              letterSpacing: '0.12em',
+              color: '#0A0A0A',
+              background: 'none',
+              border: '1px solid rgba(10,10,10,0.2)',
+              borderRadius: 999,
+              padding: '0.55rem 0.9rem',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              transition: 'all 0.25s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#0A0A0A'; e.currentTarget.style.color = '#F4F4EF' }}
+            onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#0A0A0A' }}
+          >
+            {lang === 'es' ? 'EN' : 'ES'}
+          </button>
+
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); handleLink('#contact') }}
@@ -84,7 +116,7 @@ export default function Navbar() {
               transition: 'background 0.3s',
             }}
           >
-            Contacto
+            {tr.nav.contact}
           </a>
 
           {/* Hamburger */}

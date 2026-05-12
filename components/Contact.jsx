@@ -3,16 +3,18 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import WavyBackground from './WavyBackground'
+import { useLang } from '@/lib/LanguageContext'
 import { useScrollReveal } from './useScrollReveal'
 
 export default function Contact() {
+  const { tr } = useLang()
   const [form, setForm] = useState({ nombre: '', email: '', mensaje: '', tipo: '' })
   const [sent, setSent] = useState(false)
 
   const titleRef = useScrollReveal()
   const formRef = useScrollReveal({ threshold: 0.1 })
 
-  const tipos = ['Retrato', 'Editorial', 'Marca personal', 'Evento', 'Otro']
+  const tipos = tr.contact.tipos
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -59,7 +61,7 @@ export default function Contact() {
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3.5rem' }}>
           <div style={{ width: 32, height: 1, backgroundColor: '#0A0A0A' }} />
-          <span style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#888' }}>Contacto</span>
+          <span style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#888' }}>{tr.contact.label}</span>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(3rem, 6vw, 6rem)' }}>
@@ -71,23 +73,23 @@ export default function Contact() {
               className="fade-up"
               style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 900, color: '#0A0A0A', lineHeight: 1, letterSpacing: '-0.03em', marginBottom: '1.5rem' }}
             >
-              Hagamos<br />
+              {tr.contact.title1}<br />
               <span style={{ WebkitTextStroke: '2px #0A0A0A', color: 'transparent' }}>
-                algo juntos.
+                {tr.contact.title2}
               </span>
             </h2>
 
             <p style={{ color: '#666', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '2.5rem' }}>
-              ¿Tenés un proyecto en mente? Contame de qué se trata y te respondo en menos de 24 horas.
+              {tr.contact.subtitle}
             </p>
 
             {/* Datos de contacto */}
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {[
-                { label: 'Email',       value: 'ramirezjuliane@gmail.com', href: 'mailto:ramirezjuliane@gmail.com' },
-                { label: 'Instagram',   value: '@moustachedmeatbag',       href: 'https://www.instagram.com/moustachedmeatbag/' },
-                { label: 'WhatsApp',    value: '+55 24 99965-1299',        href: 'https://wa.me/5524999651299' },
-                { label: 'Adobe Stock', value: 'Julian en Adobe Stock',    href: 'https://stock.adobe.com/es/contributor/211328140/julian?load_type=author&prev_url=detail' },
+                { label: tr.contact.email,      value: 'ramirezjuliane@gmail.com', href: 'mailto:ramirezjuliane@gmail.com' },
+                { label: tr.contact.instagram,  value: '@moustachedmeatbag',       href: 'https://www.instagram.com/moustachedmeatbag/' },
+                { label: tr.contact.whatsapp,   value: '+55 24 99965-1299',        href: 'https://wa.me/5524999651299' },
+                { label: tr.contact.adobeStock, value: tr.contact.adobeStockLabel, href: 'https://stock.adobe.com/es/contributor/211328140/julian?load_type=author&prev_url=detail' },
               ].map((item) => (
                 <div key={item.label} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(0,0,0,0.08)', padding: '1rem 0' }}>
                   <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#aaa' }}>{item.label}</span>
@@ -113,18 +115,18 @@ export default function Contact() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <p className="text-xl font-bold text-[#0A0A0A] mb-2">¡Mensaje enviado!</p>
-                <p className="text-sm text-[#888]">Te respondo en menos de 24 horas.</p>
+                <p className="text-xl font-bold text-[#0A0A0A] mb-2">{tr.contact.sent}</p>
+                <p className="text-sm text-[#888]">{tr.contact.sentSub}</p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
 
                 {/* Nombre */}
                 <div>
-                  <label style={labelStyle}>Tu nombre</label>
+                  <label style={labelStyle}>{tr.contact.nameLabel}</label>
                   <input
                     type="text"
-                    placeholder="Ej. María García"
+                    placeholder={tr.contact.namePlaceholder}
                     required
                     style={inputStyle}
                     value={form.nombre}
@@ -134,10 +136,10 @@ export default function Contact() {
 
                 {/* Email */}
                 <div>
-                  <label style={labelStyle}>Tu email</label>
+                  <label style={labelStyle}>{tr.contact.emailLabel}</label>
                   <input
                     type="email"
-                    placeholder="hola@email.com"
+                    placeholder={tr.contact.emailPlaceholder}
                     required
                     style={inputStyle}
                     value={form.email}
@@ -147,7 +149,7 @@ export default function Contact() {
 
                 {/* Tipo de proyecto */}
                 <div>
-                  <label style={labelStyle}>Tipo de proyecto</label>
+                  <label style={labelStyle}>{tr.contact.projectType}</label>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.75rem' }}>
                     {tipos.map(t => (
                       <button
@@ -178,9 +180,9 @@ export default function Contact() {
 
                 {/* Mensaje */}
                 <div>
-                  <label style={labelStyle}>Tu mensaje</label>
+                  <label style={labelStyle}>{tr.contact.messageLabel}</label>
                   <textarea
-                    placeholder="Contame sobre tu proyecto, la fecha, el lugar..."
+                    placeholder={tr.contact.messagePlaceholder}
                     required
                     rows={5}
                     style={{ ...inputStyle, resize: 'none', paddingTop: '0.75rem' }}
@@ -211,7 +213,7 @@ export default function Contact() {
                   onMouseEnter={e => e.currentTarget.style.backgroundColor = '#333'}
                   onMouseLeave={e => e.currentTarget.style.backgroundColor = '#0A0A0A'}
                 >
-                  Enviar mensaje
+                  {tr.contact.send}
                 </button>
               </form>
             )}

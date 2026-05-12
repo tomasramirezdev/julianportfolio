@@ -1,6 +1,9 @@
 'use client'
 
+import { useLang } from '@/lib/LanguageContext'
+
 export default function Footer() {
+  const { tr } = useLang()
   const year = new Date().getFullYear()
 
   return (
@@ -13,7 +16,7 @@ export default function Footer() {
     >
       <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
         <p className="text-[10px] tracking-[0.2em] uppercase text-[#444]">
-          © {year} Juli · Fotografía
+          © {year} Julián · {tr.footer.tagline}
         </p>
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
           {[
