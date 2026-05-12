@@ -6,35 +6,25 @@ import { useScrollReveal } from './useScrollReveal'
 const INITIAL_COUNT = 9
 
 const photos = [
-  // — visibles por defecto —
-  { id: 1,  src: 'https://picsum.photos/seed/woman1/900/1200',    alt: 'Entre sombras',          category: 'Retrato',   number: '01', size: 'tall' },
-  { id: 2,  src: 'https://picsum.photos/seed/sea10/1200/800',     alt: 'Horizonte sin límites',  category: 'Cruceros',  number: '02', size: 'wide' },
-  { id: 3,  src: 'https://picsum.photos/seed/nature15/900/900',   alt: 'Verde profundo',         category: 'Editorial', number: '03', size: 'square' },
-  { id: 4,  src: 'https://picsum.photos/seed/port2/1200/800',     alt: 'Llegando a puerto',      category: 'Cruceros',  number: '04', size: 'wide' },
-  { id: 5,  src: 'https://picsum.photos/seed/man3/900/1200',      alt: 'Mirada al vacío',        category: 'Retrato',   number: '05', size: 'tall' },
-  { id: 6,  src: 'https://picsum.photos/seed/party1/1200/800',    alt: 'Noche en cubierta',      category: 'Eventos',   number: '06', size: 'wide' },
-  { id: 7,  src: 'https://picsum.photos/seed/ocean5/900/1200',    alt: 'Mar abierto',            category: 'Cruceros',  number: '07', size: 'tall' },
-  { id: 8,  src: 'https://picsum.photos/seed/fashion2/900/900',   alt: 'Luz de tarde',           category: 'Editorial', number: '08', size: 'square' },
-  { id: 9,  src: 'https://picsum.photos/seed/crowd1/1200/800',    alt: 'El grupo',               category: 'Eventos',   number: '09', size: 'wide' },
-  // — extra Retrato —
-  { id: 10, src: 'https://picsum.photos/seed/girl4/900/1200',     alt: 'Instante quieto',        category: 'Retrato',   number: '10', size: 'tall' },
-  { id: 11, src: 'https://picsum.photos/seed/face7/900/1200',     alt: 'La luz lo dice todo',    category: 'Retrato',   number: '11', size: 'tall' },
-  { id: 12, src: 'https://picsum.photos/seed/portrait9/900/900',  alt: 'Contra el viento',       category: 'Retrato',   number: '12', size: 'square' },
-  // — extra Cruceros —
-  { id: 13, src: 'https://picsum.photos/seed/dock1/1200/800',     alt: 'El muelle al amanecer',  category: 'Cruceros',  number: '13', size: 'wide' },
-  { id: 14, src: 'https://picsum.photos/seed/island1/1200/800',   alt: 'Ilha Grande',            category: 'Cruceros',  number: '14', size: 'wide' },
-  { id: 15, src: 'https://picsum.photos/seed/wave3/900/1200',     alt: 'La última ola',          category: 'Cruceros',  number: '15', size: 'tall' },
-  // — extra Editorial —
-  { id: 16, src: 'https://picsum.photos/seed/model5/900/1200',    alt: 'Sin título',             category: 'Editorial', number: '16', size: 'tall' },
-  { id: 17, src: 'https://picsum.photos/seed/studio2/900/900',    alt: 'Estudio en blanco',      category: 'Editorial', number: '17', size: 'square' },
-  { id: 18, src: 'https://picsum.photos/seed/light8/1200/800',    alt: 'Geometría de luz',       category: 'Editorial', number: '18', size: 'wide' },
-  // — extra Eventos —
-  { id: 19, src: 'https://picsum.photos/seed/dance1/900/900',     alt: 'En movimiento',          category: 'Eventos',   number: '19', size: 'square' },
-  { id: 20, src: 'https://picsum.photos/seed/toast1/1200/800',    alt: 'El brindis',             category: 'Eventos',   number: '20', size: 'wide' },
-  { id: 21, src: 'https://picsum.photos/seed/night2/900/1200',    alt: 'Noche larga',            category: 'Eventos',   number: '21', size: 'tall' },
+  { id: 1,  src: '/images/Retrato1.jpg',  alt: 'La mirada que no miente',    category: 'Retrato',  number: '01', size: 'tall'   },
+  { id: 2,  src: '/images/Retrato2.jpg',  alt: 'Sombra propia',              category: 'Retrato',  number: '02', size: 'tall'   },
+  { id: 3,  src: '/images/Pareja1.jpg',   alt: 'El instante entre dos',      category: 'Parejas',  number: '03', size: 'tall'   },
+  { id: 4,  src: '/images/Pareja2.jpg',   alt: 'Cerca del silencio',         category: 'Parejas',  number: '04', size: 'tall'   },
+  { id: 5,  src: '/images/Pareja3.jpg',   alt: 'Lo que no se dice',          category: 'Parejas',  number: '05', size: 'tall'   },
+  { id: 6,  src: '/images/Pareja4.jpg',   alt: 'Tiempo detenido',            category: 'Parejas',  number: '06', size: 'tall'   },
+  { id: 7,  src: '/images/Evento.jpg',    alt: 'Cuando la noche empieza',    category: 'Eventos',  number: '07', size: 'wide'   },
+  { id: 8,  src: '/images/Evento2.jpg',   alt: 'El brindis eterno',          category: 'Eventos',  number: '08', size: 'wide'   },
+  { id: 9,  src: '/images/Evento3.jpg',   alt: 'Entre risas y luces',        category: 'Eventos',  number: '09', size: 'wide'   },
+  { id: 10, src: '/images/Evento4.jpg',   alt: 'Euforia colectiva',          category: 'Eventos',  number: '10', size: 'wide'   },
+  { id: 11, src: '/images/Evento5.jpg',   alt: 'El último baile',            category: 'Eventos',  number: '11', size: 'wide'   },
+  { id: 12, src: '/images/Grupo1.jpg',    alt: 'Los que siempre están',      category: 'Grupos',   number: '12', size: 'wide'   },
+  { id: 13, src: '/images/Grupo2.jpg',    alt: 'Una sola historia',          category: 'Grupos',   number: '13', size: 'wide'   },
+  { id: 14, src: '/images/Grupo3.jpg',    alt: 'Juntos en el horizonte',     category: 'Grupos',   number: '14', size: 'wide'   },
+  { id: 15, src: '/images/Marca1.jpg',    alt: 'La identidad en un frame',   category: 'Marca',    number: '15', size: 'square' },
+  { id: 16, src: '/images/Marca2.jpg',    alt: 'Presencia',                  category: 'Marca',    number: '16', size: 'square' },
 ]
 
-const categories = ['Todos', 'Retrato', 'Editorial', 'Cruceros', 'Eventos']
+const categories = ['Todos', 'Retrato', 'Parejas', 'Eventos', 'Grupos', 'Marca']
 
 /* ── Lightbox ── */
 function Lightbox({ photo, onClose, onPrev, onNext }) {

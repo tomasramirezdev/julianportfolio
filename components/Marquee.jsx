@@ -2,14 +2,12 @@
 
 const words = [
   'Retrato', '·',
-  'Editorial', '·',
-  'Marca personal', '·',
-  'Paisaje', '·',
-  'Arquitectura', '·',
-  'Eventos sociales', '·',
+  'Parejas', '·',
+  'Eventos', '·',
   'Grupos', '·',
-  'Cruceros', '·',
+  'Marca personal', '·',
   'Fotografía de viaje', '·',
+  'Cruceros', '·',
   'Bodas', '·',
 ]
 
