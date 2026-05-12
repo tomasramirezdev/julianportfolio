@@ -8,22 +8,22 @@ import { useLang } from '@/lib/LanguageContext'
 const INITIAL_COUNT = 9
 
 const photos = [
-  { id: 1,  src: '/images/Retrato1.jpg',  alt: 'La mirada que no miente',    category: 'Retrato',  number: '01', size: 'tall'   },
-  { id: 2,  src: '/images/Retrato2.jpg',  alt: 'Sombra propia',              category: 'Retrato',  number: '02', size: 'tall'   },
-  { id: 3,  src: '/images/Pareja1.jpg',   alt: 'El instante entre dos',      category: 'Parejas',  number: '03', size: 'tall'   },
-  { id: 4,  src: '/images/Pareja2.jpg',   alt: 'No hay edad para querer',    category: 'Parejas',  number: '04', size: 'tall'   },
-  { id: 5,  src: '/images/Pareja3.jpg',   alt: 'El amor no avisa',           category: 'Parejas',  number: '05', size: 'tall'   },
-  { id: 6,  src: '/images/Pareja4.jpg',   alt: 'Tiempo detenido',            category: 'Parejas',  number: '06', size: 'tall'   },
-  { id: 7,  src: '/images/Evento.jpg',    alt: 'Cuando la noche empieza',    category: 'Eventos',  number: '07', size: 'wide'   },
-  { id: 8,  src: '/images/Evento2.jpg',   alt: 'El brindis eterno',          category: 'Eventos',  number: '08', size: 'wide'   },
-  { id: 9,  src: '/images/Evento3.jpg',   alt: 'Desde pequeño',        category: 'Eventos',  number: '09', size: 'wide'   },
-  { id: 10, src: '/images/Evento4.jpg',   alt: 'Euforia colectiva',          category: 'Eventos',  number: '10', size: 'wide'   },
-  { id: 11, src: '/images/Evento5.jpg',   alt: 'El último baile',            category: 'Eventos',  number: '11', size: 'wide'   },
-  { id: 12, src: '/images/Grupo1.jpg',    alt: 'Los que siempre están',      category: 'Grupos',   number: '12', size: 'wide'   },
-  { id: 13, src: '/images/Grupo2.jpg',    alt: 'Una sola historia',          category: 'Grupos',   number: '13', size: 'wide'   },
-  { id: 14, src: '/images/Grupo3.jpg',    alt: 'Juntos en el horizonte',     category: 'Grupos',   number: '14', size: 'wide'   },
-  { id: 15, src: '/images/Marca1.jpg',    alt: 'La identidad en un frame',   category: 'Marca',    number: '15', size: 'square' },
-  { id: 16, src: '/images/Marca2.jpg',    alt: 'Presencia',                  category: 'Marca',    number: '16', size: 'square' },
+  { id: 1,  src: '/images/Retrato1.jpg',  alt: 'La mirada que no miente',  altEn: 'The gaze that never lies',       category: 'Retrato',  number: '01', size: 'tall'   },
+  { id: 2,  src: '/images/Retrato2.jpg',  alt: 'Sombra propia',            altEn: 'Own shadow',                     category: 'Retrato',  number: '02', size: 'tall'   },
+  { id: 3,  src: '/images/Pareja1.jpg',   alt: 'El instante entre dos',    altEn: 'The moment between two',         category: 'Parejas',  number: '03', size: 'tall'   },
+  { id: 4,  src: '/images/Pareja2.jpg',   alt: 'No hay edad para querer',  altEn: 'No age for love',                category: 'Parejas',  number: '04', size: 'tall'   },
+  { id: 5,  src: '/images/Pareja3.jpg',   alt: 'El amor no avisa',         altEn: 'Love gives no warning',          category: 'Parejas',  number: '05', size: 'tall'   },
+  { id: 6,  src: '/images/Pareja4.jpg',   alt: 'Tiempo detenido',          altEn: 'Frozen in time',                 category: 'Parejas',  number: '06', size: 'tall'   },
+  { id: 7,  src: '/images/Evento.jpg',    alt: 'Cuando la noche empieza',  altEn: 'When the night begins',          category: 'Eventos',  number: '07', size: 'wide'   },
+  { id: 8,  src: '/images/Evento2.jpg',   alt: 'El brindis eterno',        altEn: 'The eternal toast',              category: 'Eventos',  number: '08', size: 'wide'   },
+  { id: 9,  src: '/images/Evento3.jpg',   alt: 'Desde pequeño',            altEn: 'Since childhood',                category: 'Eventos',  number: '09', size: 'wide'   },
+  { id: 10, src: '/images/Evento4.jpg',   alt: 'Euforia colectiva',        altEn: 'Collective euphoria',            category: 'Eventos',  number: '10', size: 'wide'   },
+  { id: 11, src: '/images/Evento5.jpg',   alt: 'El último baile',          altEn: 'The last dance',                 category: 'Eventos',  number: '11', size: 'wide'   },
+  { id: 12, src: '/images/Grupo1.jpg',    alt: 'Los que siempre están',    altEn: 'The ones who are always there',  category: 'Grupos',   number: '12', size: 'wide'   },
+  { id: 13, src: '/images/Grupo2.jpg',    alt: 'Una sola historia',        altEn: 'One single story',               category: 'Grupos',   number: '13', size: 'wide'   },
+  { id: 14, src: '/images/Grupo3.jpg',    alt: 'Juntos en el horizonte',   altEn: 'Together on the horizon',        category: 'Grupos',   number: '14', size: 'wide'   },
+  { id: 15, src: '/images/Marca1.jpg',    alt: 'La identidad en un frame', altEn: 'Identity in a frame',            category: 'Marca',    number: '15', size: 'square' },
+  { id: 16, src: '/images/Marca2.jpg',    alt: 'Presencia',                altEn: 'Presence',                       category: 'Marca',    number: '16', size: 'square' },
 ]
 
 
@@ -59,6 +59,7 @@ function Lightbox({ photo, onClose, onPrev, onNext }) {
         pointerEvents: 'none', whiteSpace: 'nowrap',
       }}>
         {photo.category} · {photo.number}
+        {/* category shown in lightbox stays as internal key */}
       </p>
       {[
         { label: '✕', pos: { top: '1.5rem', right: '1.5rem' }, action: onClose },
@@ -79,7 +80,7 @@ function Lightbox({ photo, onClose, onPrev, onNext }) {
 
 /* ── Gallery ── */
 export default function Gallery() {
-  const { tr } = useLang()
+  const { tr, lang } = useLang()
   const [activeCategory, setActiveCategory] = useState('Todos')
   const [lightboxIndex, setLightboxIndex] = useState(null)
   const [showAll, setShowAll] = useState(false)
@@ -168,10 +169,10 @@ export default function Gallery() {
                 <div style={{ padding: '0.6rem 0.2rem 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.5rem' }}>
                   <div>
                     <p style={{ fontSize: '0.72rem', fontWeight: 700, color: '#0A0A0A', letterSpacing: '0.01em', lineHeight: 1.2 }}>
-                      {photo.alt}
+                      {lang === 'es' ? photo.alt : photo.altEn}
                     </p>
                     <p style={{ fontSize: '0.55rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#aaa', marginTop: '0.25rem' }}>
-                      {photo.category}
+                      {categoryLabel(photo.category)}
                     </p>
                   </div>
                   <span style={{ fontSize: '0.55rem', color: '#ccc', letterSpacing: '0.1em', flexShrink: 0, paddingTop: '0.1rem' }}>
